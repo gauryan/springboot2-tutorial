@@ -1,1 +1,1 @@
-# Spring Boot 2.x.x Tutorial
+# Spring Boot 2.x.x Tutorial (Freemarker, MyBatis, MariaDB)
