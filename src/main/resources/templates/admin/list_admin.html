@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html th:replace="~{layoutFile :: layout(~{::title}, ~{::section})}">
-<head>
-  <title>Spring Tutorial</title>
-</head>
-<body>
-<section>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="~{layout}">
+
+<th:block layout:fragment="content">
   <div class="container-fluid">
     <h2>관리자 목록</h2>
     <div style="text-align: right;">
@@ -58,6 +57,6 @@
         location.href = url;
     }
   </script>
-</section>
-</body>
+</th:block>
+
 </html>
