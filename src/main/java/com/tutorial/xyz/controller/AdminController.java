@@ -2,8 +2,8 @@ package com.tutorial.xyz.controller;
 
 import java.util.List;
 
+import com.tutorial.xyz.dto.Admin;
 import com.tutorial.xyz.mapper.AdminMapper;
-import com.tutorial.xyz.model.Admin;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,11 +20,8 @@ public class AdminController {
 
   @GetMapping("/mgmt/admin")
   public String listAdmin(Model model) {
-    List<Admin> admins = null;
-    admins = mapper.listAdmin();
+    List<Admin> admins = mapper.listAdmin();
     model.addAttribute("admins", admins);
-    model.addAttribute("userid", "admin");
-    model.addAttribute("nick", "메인관리자");
 
     return "admin/list_admin";
   }
