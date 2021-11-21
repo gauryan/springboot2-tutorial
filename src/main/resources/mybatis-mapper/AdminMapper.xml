@@ -4,4 +4,8 @@
     <select id="listAdmin" resultType="Admin">
         CALL SP_LIST_ADMIN()
     </select>
+
+    <insert id="insertAdmin">
+        CALL SP_INSERT_ADMIN(#{userid}, #{password}, #{nick})
+    </insert>
 </mapper>
