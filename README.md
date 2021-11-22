@@ -1,1 +1,1 @@
-# Spring Boot 2.x.x Tutorial (Thymeleaf, MyBatis, MariaDB)
+# Spring Boot 2.x.x Tutorial : Thymeleaf, MyBatis, MySQL(MariaDB)
