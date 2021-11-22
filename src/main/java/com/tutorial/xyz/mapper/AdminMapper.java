@@ -26,4 +26,10 @@ public interface AdminMapper {
 
   // @Update("CALL SP_UPDATE_ADMIN_PASSWORD(#{id}, #{password})")
   int updateAdminPassword(@Param("id") Long id, @Param("password") String password);
+
+  // @Update("CALL SP_UPDATE_ADMIN(#{id}, #{nick})")
+  int updateAdmin(@Param("id") Long id, @Param("nick") String nick);
+
+  // @Delete("CALL SP_DELETE_ADMIN(#{id})")
+  int deleteAdmin(@Param("id") Long id);
 }

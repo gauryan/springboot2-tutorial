@@ -56,7 +56,7 @@ public class AdminController {
 
   // 관리자 비밀번호 변경 폼
   @GetMapping("/admin/chg_passwd_form/{id}")
-  public String chePasswdForm(@PathVariable("id") Long id, Model model) {
+  public String chgPasswdForm(@PathVariable("id") Long id, Model model) {
     // logger.info("1111111111");
     Admin admin = mapper.getAdmin(id);
     model.addAttribute("admin", admin);
@@ -70,6 +70,28 @@ public class AdminController {
       return "redirect:/mgmt/admin";
     }
     mapper.updateAdminPassword(id, passwd1);
+    return "redirect:/mgmt/admin";
+  }
+
+  // 관리자 수정 폼
+  @GetMapping("/admin/update_form/{id}")
+  public String updateForm(@PathVariable("id") Long id, Model model) {
+    Admin admin = mapper.getAdmin(id);
+    model.addAttribute("admin", admin);
+    return "mgmt/admin/update_form";
+  }
+
+  // 관리자 수정
+  @PostMapping("/admin/update")
+  public String update(@RequestParam("id") Long id, @RequestParam("nick") String nick) {
+    mapper.updateAdmin(id, nick);
+    return "redirect:/mgmt/admin";
+  }
+
+  // 관리자 삭제
+  @GetMapping("/admin/delete/{id}")
+  public String delete(@PathVariable("id") Long id) {
+    mapper.deleteAdmin(id);
     return "redirect:/mgmt/admin";
   }
 }
