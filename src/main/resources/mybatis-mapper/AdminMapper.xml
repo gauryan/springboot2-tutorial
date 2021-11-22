@@ -8,4 +8,13 @@
     <insert id="insertAdmin">
         CALL SP_INSERT_ADMIN(#{userid}, #{password}, #{nick})
     </insert>
+
+    <select id="getAdmin" resultType="Admin">
+        CALL SP_GET_ADMIN(#{id})
+    </select>
+
+    <update id="updateAdminPassword">
+        CALL SP_UPDATE_ADMIN_PASSWORD(#{id}, #{password})
+    </update>
+
 </mapper>

@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -43,15 +44,8 @@ public class AdminController {
   // 관리자 추가
   @PostMapping("/admin/insert")
   public String insert(@RequestParam("userid") String userid, @RequestParam("passwd1") String passwd1, @RequestParam("passwd2") String passwd2, @RequestParam("nick") String nick) {
-    /*
-    logger.info("userid -> " + userid);
-    logger.info("passwd1 -> " + passwd1);
-    logger.info("passwd2 -> " + passwd2);
-    logger.info("nick -> " + nick);
-    */
     String password;
     if(!passwd1.equals(passwd2)) {
-      // logger.info("비밀번호가 다르옵니다.");
       return "redirect:/mgmt/admin";
     }
     password = passwd1;
@@ -60,4 +54,22 @@ public class AdminController {
     return "redirect:/mgmt/admin";
   }
 
+  // 관리자 비밀번호 변경 폼
+  @GetMapping("/admin/chg_passwd_form/{id}")
+  public String chePasswdForm(@PathVariable("id") Long id, Model model) {
+    // logger.info("1111111111");
+    Admin admin = mapper.getAdmin(id);
+    model.addAttribute("admin", admin);
+    return "mgmt/admin/chg_passwd_form";
+  }
+
+  // 관리자 비밀번호 수정
+  @PostMapping("/admin/chg_passwd")
+  public String chg_passwd(@RequestParam("id") Long id, @RequestParam("passwd1") String passwd1, @RequestParam("passwd2") String passwd2) {
+    if(!passwd1.equals(passwd2)) {
+      return "redirect:/mgmt/admin";
+    }
+    mapper.updateAdminPassword(id, passwd1);
+    return "redirect:/mgmt/admin";
+  }
 }
